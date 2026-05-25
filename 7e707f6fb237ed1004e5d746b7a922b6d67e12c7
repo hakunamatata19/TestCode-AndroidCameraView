@@ -1,0 +1,88 @@
+app/src/main/java/com/chen/androidcameraview/TimestampWatermarkView.kt
+  6d7c8173557d3c8b 37
+  c6f573d6d27e4e79 42,78-89,97-109,140-151,163-166,169-170,173-174
+app/src/main/java/com/chen/androidcameraview/MainActivity.kt
+  6d7c8173557d3c8b 35
+app/src/main/AndroidManifest.xml
+  6d7c8173557d3c8b 6
+app/src/main/java/com/chen/androidcameraview/PhotoCaptureActivity.kt
+  6d7c8173557d3c8b 1-212,216-229
+  c6f573d6d27e4e79 213-215
+CLAUDE.md
+  5d7291439da3a6db 1-65
+app/src/main/java/com/chen/androidcameraview/ScreenRecorder.kt
+  c6f573d6d27e4e79 196-198
+app/src/main/res/layout/activity_photo_capture.xml
+  6d7c8173557d3c8b 1-53
+app/build.gradle.kts
+  2f32d8f0a0cef730 62
+app/src/main/java/com/chen/androidcameraview/CameraManager.kt
+  c6f573d6d27e4e79 13,50-74,93,169-203,256-258,268-303,319,323-341
+  2f32d8f0a0cef730 4-12,14,18,20-23,27-29,34-35,41-44,48,77-80,83-86,100,126-127,141-147,149-168,205-214,218,222-223,226,229-255,259-267,304-318,320-321
+  6d7c8173557d3c8b 16,45-47,49,75-76,81-82,92,97-98,104-125,128-140,148,204,215-217,219-221,224-225,227-228,342
+app/src/main/res/layout/activity_detail.xml
+  6d7c8173557d3c8b 43-55
+app/src/main/java/com/chen/androidcameraview/DetailActivity.kt
+  6d7c8173557d3c8b 92,125-138,141,256
+  2f32d8f0a0cef730 10,29-30,34-38,45-47,61,65-66,69-70,94,105,108,116-120,146,205,212,217,219-222,226,228,230,237-240,243-244,246-247,249-251,253,262-263,268-287,289-292,294-296,312-314
+  c6f573d6d27e4e79 148-152,160-174,178-192,194-202,232-234
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.20",
+  "base_commit_sha": "7e707f6fb237ed1004e5d746b7a922b6d67e12c7",
+  "prompts": {
+    "2f32d8f0a0cef730": {
+      "agent_id": {
+        "tool": "github-copilot-jetbrains",
+        "id": "1779355353157",
+        "model": "unknown"
+      },
+      "human_author": "cheng8",
+      "messages": [],
+      "total_additions": 283,
+      "total_deletions": 158,
+      "accepted_lines": 232,
+      "overriden_lines": 0
+    },
+    "5d7291439da3a6db": {
+      "agent_id": {
+        "tool": "github-copilot-jetbrains",
+        "id": "1779672950064",
+        "model": "unknown"
+      },
+      "human_author": "cheng8",
+      "messages": [],
+      "total_additions": 65,
+      "total_deletions": 0,
+      "accepted_lines": 65,
+      "overriden_lines": 0
+    },
+    "6d7c8173557d3c8b": {
+      "agent_id": {
+        "tool": "github-copilot",
+        "id": "task-d7kn8uvjk53smp6i1k4g.session.execution",
+        "model": "unknown"
+      },
+      "human_author": "cheng8",
+      "messages": [],
+      "total_additions": 383,
+      "total_deletions": 43,
+      "accepted_lines": 377,
+      "overriden_lines": 0
+    },
+    "c6f573d6d27e4e79": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e68e8c3f-5482-4962-8c98-f97c67fed5d2",
+        "model": "claude-opus-4.6"
+      },
+      "human_author": "cheng8",
+      "messages": [],
+      "total_additions": 393,
+      "total_deletions": 195,
+      "accepted_lines": 223,
+      "overriden_lines": 0
+    }
+  }
+}
