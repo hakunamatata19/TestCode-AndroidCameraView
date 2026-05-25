@@ -32,9 +32,7 @@ class MainActivity : AppCompatActivity() {
         // 配置列表数据，可以手动添加更多项目
         val items = listOf(
             MainItem("录像", DetailActivity::class.java),
-            MainItem("拍照", DetailActivity::class.java),
-            // 在此添加更多列表项，例如：
-            // MainItem("其他页面", OtherActivity::class.java),
+            MainItem("拍照", PhotoCaptureActivity::class.java),
         )
 
         val adapter = MainAdapter(items) { item ->

@@ -5,14 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailActivity">
+    tools:context=".PhotoCaptureActivity">
 
-    <!-- 相机预览容器，TimestampWatermarkView 动态添加至此 -->
+    <!-- 相机预览容器 -->
     <FrameLayout
         android:id="@+id/previewContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnRecord"
+        app:layout_constraintBottom_toTopOf="@+id/btnCapture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -23,22 +23,6 @@
             android:layout_height="match_parent" />
 
     </FrameLayout>
-
-    <!-- 录制计时显示 -->
-    <TextView
-        android:id="@+id/tvRecordingTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="#80000000"
-        android:padding="8dp"
-        android:text="00:00"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- 翻转摄像头按钮 -->
     <ImageButton
@@ -55,27 +39,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- 拖动提示，第一次拖动后自动隐藏 -->
-    <TextView
-        android:id="@+id/tvDragHint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:background="#80000000"
-        android:padding="6dp"
-        android:text="拖动时间戳调整水印位置"
-        android:textColor="#FFFFFF"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnRecord"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+    <!-- 拍照按钮 -->
     <Button
-        android:id="@+id/btnRecord"
+        android:id="@+id/btnCapture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="开始录制"
+        android:text="拍照"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
