@@ -1,0 +1,71 @@
+app/src/main/res/values/colors.xml
+  734571c3fcb0f89e 5-25
+app/src/main/res/layout/item_main.xml
+  734571c3fcb0f89e 6-12,14-26,32-44,47-64
+app/src/main/res/drawable/bg_circle_dark.xml
+  734571c3fcb0f89e 1-5
+app/src/main/res/drawable/bg_recording_time.xml
+  734571c3fcb0f89e 1-6
+app/src/main/res/drawable/selector_record_button.xml
+  734571c3fcb0f89e 1-5
+app/src/main/res/drawable/bg_icon_photo.xml
+  734571c3fcb0f89e 1-5
+app/src/main/res/drawable/bg_control_bar_gradient.xml
+  734571c3fcb0f89e 1-8
+app/src/main/res/drawable/bg_icon_video.xml
+  734571c3fcb0f89e 1-5
+app/src/main/res/drawable/bg_record_recording.xml
+  734571c3fcb0f89e 1-33
+app/src/main/res/drawable/bg_capture_button.xml
+  734571c3fcb0f89e 1-22
+app/src/main/res/drawable/bg_main_item_card.xml
+  734571c3fcb0f89e 1-6
+app/src/main/java/com/chen/androidcameraview/TimestampWatermarkView.kt
+  734571c3fcb0f89e 53-60,63-65,95-96,117-118,129-130,132,134-142,177-179,211-216
+app/src/main/res/layout/activity_photo_capture.xml
+  734571c3fcb0f89e 8,16,28-34,36-58
+app/src/main/res/layout/activity_main.xml
+  734571c3fcb0f89e 8,11-39,44-49,53,55
+app/src/main/res/drawable/dot_white.xml
+  734571c3fcb0f89e 1-5
+app/src/main/res/drawable/watermark_drag_border.xml
+  734571c3fcb0f89e 1-7
+app/src/main/java/com/chen/androidcameraview/CameraManager.kt
+  734571c3fcb0f89e 297-298,300,302-304,308-311,315-318
+app/src/main/java/com/chen/androidcameraview/DetailActivity.kt
+  734571c3fcb0f89e 55,61-68,169,172-179,274,277,279,281,302-303,329
+app/src/main/res/drawable/bg_record_idle.xml
+  734571c3fcb0f89e 1-11
+app/src/main/java/com/chen/androidcameraview/PhotoCaptureActivity.kt
+  734571c3fcb0f89e 100,102-106,132,149,162
+app/src/main/res/layout/activity_detail.xml
+  734571c3fcb0f89e 8,16,28-29,33-40,44-45,47-52,54-63,70-76,80,84-114
+app/src/main/java/com/chen/androidcameraview/MainItem.kt
+  734571c3fcb0f89e 3-4,8-10,15-17
+app/src/main/res/drawable/bg_record_idle_dot.xml
+  734571c3fcb0f89e 1-32
+app/src/main/java/com/chen/androidcameraview/MainActivity.kt
+  734571c3fcb0f89e 34-47
+app/src/main/java/com/chen/androidcameraview/MainAdapter.kt
+  734571c3fcb0f89e 23-25
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.20",
+  "base_commit_sha": "02d749e365c8f0eebdc735789ebe4c5c8f58ad2e",
+  "prompts": {
+    "734571c3fcb0f89e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0564391e-8b29-478a-a1fe-6e2f0e5a7821",
+        "model": "claude-sonnet-4.6"
+      },
+      "human_author": "cheng8",
+      "messages": [],
+      "total_additions": 480,
+      "total_deletions": 104,
+      "accepted_lines": 480,
+      "overriden_lines": 0
+    }
+  }
+}
