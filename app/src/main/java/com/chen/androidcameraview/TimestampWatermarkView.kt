@@ -50,10 +50,19 @@ class TimestampWatermarkView constructor(
         style = Paint.Style.FILL
     }
 
+    // 拖动状态下的边框
+    private val borderPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = Color.parseColor("#F44336")
+        style = Paint.Style.STROKE
+        strokeWidth = 4f
+    }
+    private var isDragging = false
+
     private val textBounds = Rect()
     private val bgRect = RectF()
-    private val padding = 16f
-    private val cornerRadius = 8f
+    // 与 CameraManager.drawTimestamp 保持一致的视觉参数
+    private var padding = 42f * 0.4f
+    private var cornerRadius = 42f * 0.2f
 
     // ---- 定时刷新 ------------------------------------------------------------
     private val handler = Handler(Looper.getMainLooper())
@@ -83,6 +92,8 @@ class TimestampWatermarkView constructor(
                 val newSize = shortSide * 0.04f
                 textPaint.textSize = newSize
                 textPaint.setShadowLayer(newSize * 0.06f, 2f, 2f, Color.BLACK)
+                padding = newSize * 0.4f
+                cornerRadius = newSize * 0.2f
                 requestLayout()
                 invalidate()
             }
@@ -103,6 +114,8 @@ class TimestampWatermarkView constructor(
             val newSize = shortSide * 0.04f
             textPaint.textSize = newSize
             textPaint.setShadowLayer(newSize * 0.06f, 2f, 2f, Color.BLACK)
+            padding = newSize * 0.4f
+            cornerRadius = newSize * 0.2f
             requestLayout()
         }
     }
@@ -113,14 +126,20 @@ class TimestampWatermarkView constructor(
 
         textPaint.getTextBounds(currentTimestamp, 0, currentTimestamp.length, textBounds)
 
-        val textW = textBounds.width().toFloat()
-        val textH = textBounds.height().toFloat()
+        val totalW = textBounds.width() + padding * 2
+        val totalH = textBounds.height() + padding * 2
 
-        val textX = padding
-        val textY = padding + textH
-
-        bgRect.set(0f, 0f, textX + textW + padding, textY + padding)
+        bgRect.set(0f, 0f, totalW, totalH)
         canvas.drawRoundRect(bgRect, cornerRadius, cornerRadius, bgPaint)
+
+        // 拖动时绘制红色边框提示
+        if (isDragging) {
+            canvas.drawRoundRect(bgRect, cornerRadius, cornerRadius, borderPaint)
+        }
+
+        // 文字按 padding 偏移绘制，与 CameraManager.drawTimestamp 保持一致
+        val textX = padding - textBounds.left
+        val textY = padding - textBounds.top
         canvas.drawText(currentTimestamp, textX, textY, textPaint)
     }
 
@@ -155,6 +174,9 @@ class TimestampWatermarkView constructor(
                 downRawY = event.rawY
                 downTransX = translationX
                 downTransY = translationY
+                isDragging = true
+                animate().scaleX(1.08f).scaleY(1.08f).setDuration(120).start()
+                invalidate()
                 return true
             }
             MotionEvent.ACTION_MOVE -> {
@@ -184,6 +206,12 @@ class TimestampWatermarkView constructor(
                     absX / parentView.width,
                     absY / parentView.height
                 )
+                return true
+            }
+            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                isDragging = false
+                animate().scaleX(1f).scaleY(1f).setDuration(120).start()
+                invalidate()
                 return true
             }
         }

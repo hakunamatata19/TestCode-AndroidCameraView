@@ -2,4 +2,24 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- 主题色 -->
+    <color name="brand_primary">#7C4DFF</color>
+    <color name="brand_primary_dark">#5E35B1</color>
+    <color name="brand_accent">#FF4081</color>
+
+    <!-- 录制相关 -->
+    <color name="recording_red">#F44336</color>
+    <color name="recording_red_dark">#C62828</color>
+
+    <!-- 半透明背景 -->
+    <color name="overlay_dark">#99000000</color>
+    <color name="overlay_light">#66000000</color>
+
+    <!-- 列表项 -->
+    <color name="item_bg">#FFFFFF</color>
+    <color name="item_icon_video">#7C4DFF</color>
+    <color name="item_icon_photo">#FF4081</color>
+    <color name="item_subtitle">#666666</color>
+    <color name="screen_bg">#F5F5F7</color>
 </resources>

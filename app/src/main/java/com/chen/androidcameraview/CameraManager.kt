@@ -294,25 +294,28 @@ class CameraManager(
             }
         }
 
-        // 根据归一化坐标计算实际位置，并限制不超出边界
-        val rawX = logicNormX * width + padding
-        val rawY = logicNormY * height + bounds.height() + padding * 2
+        // 归一化坐标的语义：水印整体（背景圆角矩形）左上角相对画面的位置
+        // 与预览端 TimestampWatermarkView 保持一致
         val totalW = bounds.width() + padding * 2
-        val totalH = bounds.height() + padding * 3
-        val x = rawX.coerceIn(padding, (width - totalW).coerceAtLeast(padding))
-        val y = rawY.coerceIn(totalH, height.toFloat() - padding)
+        val totalH = bounds.height() + padding * 2
+
+        // 水印左上角期望位置
+        val rectLeft = (logicNormX * width).coerceIn(0f, (width - totalW).coerceAtLeast(0f))
+        val rectTop = (logicNormY * height).coerceIn(0f, (height - totalH).coerceAtLeast(0f))
 
         // 背景
         val bgRect = RectF(
-            x - padding,
-            y - bounds.height() - padding,
-            x + bounds.width() + padding,
-            y + padding
+            rectLeft,
+            rectTop,
+            rectLeft + totalW,
+            rectTop + totalH
         )
         canvas.drawRoundRect(bgRect, cornerRadius, cornerRadius, bgPaint)
 
-        // 文字
-        canvas.drawText(timestamp, x, y, textPaint)
+        // 文字基线 = top + padding + textHeight - bounds.bottom 调整以居中
+        val textX = rectLeft + padding - bounds.left
+        val textY = rectTop + padding - bounds.top
+        canvas.drawText(timestamp, textX, textY, textPaint)
     }
 
     fun release() {

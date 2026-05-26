@@ -52,9 +52,20 @@ class DetailActivity : AppCompatActivity() {
     private val timerRunnable = object : Runnable {
         override fun run() {
             recordingSeconds++
-            binding.tvRecordingTime.text =
+            binding.tvRecordingTimeText.text =
                 String.format("%02d:%02d", recordingSeconds / 60, recordingSeconds % 60)
             handler.postDelayed(this, 1000)
+        }
+    }
+
+    // 红点闪烁动画
+    private val blinkRunnable = object : Runnable {
+        override fun run() {
+            binding.recordingDot.animate()
+                .alpha(if (binding.recordingDot.alpha > 0.5f) 0.2f else 1f)
+                .setDuration(500)
+                .start()
+            handler.postDelayed(this, 500)
         }
     }
 
@@ -155,8 +166,17 @@ class DetailActivity : AppCompatActivity() {
         val lp = FrameLayout.LayoutParams(
             FrameLayout.LayoutParams.WRAP_CONTENT,
             FrameLayout.LayoutParams.WRAP_CONTENT
-        ).apply { leftMargin = 48; topMargin = 48 }
+        )
         binding.previewContainer.addView(watermarkView, lp)
+
+        // 等容器布局完成后，按归一化坐标设置初始位置，保证预览与视频水印对齐
+        binding.previewContainer.post {
+            val parent = binding.previewContainer
+            val nx = cameraManager.watermarkNormalizedX
+            val ny = cameraManager.watermarkNormalizedY
+            watermarkView.translationX = nx * parent.width - watermarkView.left
+            watermarkView.translationY = ny * parent.height - watermarkView.top
+        }
 
         // 监听设备方向变化，旋转预览水印使其与视频输出方向一致
         cameraManager.onOrientationChanged = { orientation ->
@@ -251,18 +271,20 @@ class DetailActivity : AppCompatActivity() {
         Log.d(TAG, "录制已启动")
 
         // 更新 UI
-        binding.btnRecord.text = "停止录制"
+        binding.btnRecord.isSelected = true
         binding.tvRecordingTime.visibility = View.VISIBLE
         binding.btnFlipCamera.visibility = View.GONE
+        binding.tvDragHint.visibility = View.GONE
         recordingSeconds = 0
+        binding.tvRecordingTimeText.text = "00:00"
         handler.post(timerRunnable)
+        handler.post(blinkRunnable)
     }
 
     private fun stopRecording() {
         Log.d(TAG, "停止录制...")
         activeRecording?.stop()
         binding.btnRecord.isEnabled = false
-        binding.btnRecord.text = "保存中..."
     }
 
     private fun handleRecordEvent(event: VideoRecordEvent) {
@@ -277,6 +299,8 @@ class DetailActivity : AppCompatActivity() {
             is VideoRecordEvent.Finalize -> {
                 activeRecording = null
                 handler.removeCallbacks(timerRunnable)
+                handler.removeCallbacks(blinkRunnable)
+                binding.recordingDot.alpha = 1f
 
                 if (event.hasError()) {
                     Log.e(TAG, "录制失败: error=${event.error}, cause=${event.cause?.message}", event.cause)
@@ -302,7 +326,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun resetRecordButton() {
         binding.btnRecord.isEnabled = true
-        binding.btnRecord.text = "开始录制"
+        binding.btnRecord.isSelected = false
     }
 
     // =========================================================================

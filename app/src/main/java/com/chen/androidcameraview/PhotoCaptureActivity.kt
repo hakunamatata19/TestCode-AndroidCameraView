@@ -97,8 +97,13 @@ class PhotoCaptureActivity : AppCompatActivity() {
         val lp = FrameLayout.LayoutParams(
             FrameLayout.LayoutParams.WRAP_CONTENT,
             FrameLayout.LayoutParams.WRAP_CONTENT
-        ).apply { leftMargin = 48; topMargin = 48 }
+        )
         binding.previewContainer.addView(watermarkView, lp)
+        binding.previewContainer.post {
+            val parent = binding.previewContainer
+            watermarkView.translationX = 0.05f * parent.width - watermarkView.left
+            watermarkView.translationY = 0.05f * parent.height - watermarkView.top
+        }
     }
 
     private fun setupFlipButton() {
@@ -124,7 +129,7 @@ class PhotoCaptureActivity : AppCompatActivity() {
         }
 
         binding.btnCapture.isEnabled = false
-        binding.btnCapture.text = "处理中..."
+        binding.btnCapture.alpha = 0.5f
 
         // 先拍照到临时文件
         val tmpFile = File(cacheDir, "photo_${System.currentTimeMillis()}.jpg")
@@ -141,7 +146,7 @@ class PhotoCaptureActivity : AppCompatActivity() {
                         tmpFile.delete()
                         runOnUiThread {
                             binding.btnCapture.isEnabled = true
-                            binding.btnCapture.text = "拍照"
+                            binding.btnCapture.alpha = 1f
                             if (uri != null) {
                                 Toast.makeText(this@PhotoCaptureActivity, "照片已保存", Toast.LENGTH_SHORT).show()
                             } else {
@@ -154,7 +159,7 @@ class PhotoCaptureActivity : AppCompatActivity() {
                 override fun onError(exception: ImageCaptureException) {
                     Log.e(TAG, "拍照失败", exception)
                     binding.btnCapture.isEnabled = true
-                    binding.btnCapture.text = "拍照"
+                    binding.btnCapture.alpha = 1f
                     Toast.makeText(this@PhotoCaptureActivity, "拍照失败: ${exception.message}", Toast.LENGTH_SHORT).show()
                 }
             }

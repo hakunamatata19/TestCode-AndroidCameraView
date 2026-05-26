@@ -31,8 +31,20 @@ class MainActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         // 配置列表数据，可以手动添加更多项目
         val items = listOf(
-            MainItem("录像", DetailActivity::class.java),
-            MainItem("拍照", PhotoCaptureActivity::class.java),
+            MainItem(
+                title = "录像",
+                subtitle = "录制带时间戳水印的视频",
+                iconRes = android.R.drawable.ic_media_play,
+                iconBgRes = R.drawable.bg_icon_video,
+                activityClass = DetailActivity::class.java
+            ),
+            MainItem(
+                title = "拍照",
+                subtitle = "拍摄并烧录时间戳水印",
+                iconRes = android.R.drawable.ic_menu_camera,
+                iconBgRes = R.drawable.bg_icon_photo,
+                activityClass = PhotoCaptureActivity::class.java
+            ),
         )
 
         val adapter = MainAdapter(items) { item ->

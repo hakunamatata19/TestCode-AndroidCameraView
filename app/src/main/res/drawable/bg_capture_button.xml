@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 外圈白色环 -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/white" />
+            <stroke
+                android:width="4dp"
+                android:color="#33000000" />
+        </shape>
+    </item>
+    <!-- 内部品牌色 -->
+    <item
+        android:left="6dp"
+        android:right="6dp"
+        android:top="6dp"
+        android:bottom="6dp">
+        <shape android:shape="oval">
+            <solid android:color="@color/brand_primary" />
+        </shape>
+    </item>
+</layer-list>

@@ -20,6 +20,9 @@ class MainAdapter(
 
         fun bind(item: MainItem) {
             binding.tvTitle.text = item.title
+            binding.tvSubtitle.text = item.subtitle
+            binding.ivIcon.setImageResource(item.iconRes)
+            binding.ivIcon.setBackgroundResource(item.iconBgRes)
             binding.root.setOnClickListener {
                 onItemClick(item)
             }
